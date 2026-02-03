@@ -1,41 +1,95 @@
 "use strict";
+// class GYM{
+// peso:number;
+// estatura:number;
+// constructor(peso:number, estatura:number){
+//     this.peso=peso;
+//     this.estatura=estatura;
+// }
+// public IMC(): void{
+//     let estado;
+//     let imc= (this.peso/(this.estatura*this.estatura));
+//     console.log("El IMC es de: "+imc)
 Object.defineProperty(exports, "__esModule", { value: true });
-class POO {
-    constructor(_codigo, _nombre, _edad, _laboratorio, _parcial) {
-        this.codigo = _codigo;
-        this.nombre = _nombre;
-        this.edad = _edad;
-        this.laboratorio = _laboratorio;
-        this.parcial = _parcial;
+//     if(imc< 18.5){
+//         estado="bajo peso";
+//     }else if(imc>=18.5 && imc <=24.9){
+//         estado="Normal";
+//     }else if(imc>=25 && imc <=29.9){
+//         estado="sobre peso";
+//     }else if(imc>=30){
+//         estado="Obesidad";
+//     }
+//     //Interpretación del IMC en adultos 
+//     //Bajo peso: Menos de 18.5.
+//     //Peso saludable (Normal): 18.5 – 24.9.
+//     //Sobrepeso: 25.0 – 29.9.
+//     //Obesidad: 30.0 o más.   
+//}
+//}
+// let cliente = new GYM(48,1.5);
+// cliente.IMC();
+// class conversor{
+// temp:number;
+// constructor(temp:number){
+//     this.temp=temp;
+// }
+// public FC(): void {
+//     //f°-32/1.8
+// }
+// public CF(): void {
+//     //C°=5/9(F°-32)
+// }
+// public KF(): void {
+//     //°F=(K-273.15)9/5+32
+// }
+// public KC(): void {
+//   //K-273.15   
+// }
+// }
+// let aire = new conversor(45);
+class Instituto {
+    constructor(nombre, infraccion) {
+        this.total = 0;
+        this.descripcion = "";
+        this.nombre = nombre;
+        this.infraccion = infraccion;
+        this.calcularSancion();
     }
-    mostrarDATOS() {
-        console.log("El estudiante: " + this.nombre);
-        console.log("Codigo: " + this.codigo);
-        console.log("Tiene las siguientes notas - laboratorio: " + this.laboratorio, "parcial: " + this.parcial);
+    calcularSancion() {
+        switch (this.infraccion) {
+            case 1:
+                this.descripcion = "Llegada tardía";
+                this.total = 1;
+                break;
+            case 2:
+                this.descripcion = "Caminar por los pasillos en horas de clase";
+                this.total = 3;
+                break;
+            case 3:
+                this.descripcion = "No andar vestimenta apropiada";
+                this.total = 5;
+                break;
+            case 4:
+                this.descripcion = "No hacer uso adecuado de las instalaciones";
+                this.total = 10;
+                break;
+            default:
+                this.descripcion = "Infracción no válida";
+                this.total = 0;
+        }
     }
-    mostrarNOTAS() {
-        console.log("Tiene las siguientes notas - laboratorio: " + this.laboratorio, "parcial: " + this.parcial);
+    mostrarMensaje() {
+        if (this.total > 0) {
+            console.log(`Estudiante: ${this.nombre}\n` +
+                `Infracción: ${this.descripcion}\n` +
+                `Total a cancelar: $${this.total}`);
+        }
+        else {
+            console.log("No se aplicó ninguna sanción.");
+        }
     }
 }
-class Redes {
-    constructor(_nombre, _laboratorio1, _laboratorio2, _laboratorio3, _parcial1, _parcial2, _parcial3) {
-        this.nombre = _nombre;
-        this.laboratorio1 = _laboratorio1;
-        this.laboratorio2 = _laboratorio2;
-        this.laboratorio3 = _laboratorio3;
-        this.parcial1 = _parcial1;
-        this.parcial2 = _parcial2;
-        this.parcial3 = _parcial3;
-    }
-    MostrarDatos() {
-        const notaLaboratorio = ((this.laboratorio1 + this.laboratorio2 + this.laboratorio3) * 0.60) / 3;
-        const notaParcial = ((this.parcial1 + this.parcial2 + this.parcial3) * 0.40) / 3;
-        console.log(`${this.nombre} ${this.laboratorio1} ${this.laboratorio2} ${this.laboratorio3} ${this.parcial1} ${this.parcial2} ${this.parcial3} = ${notaLaboratorio + notaParcial}`);
-    }
-}
-const estudiante1 = new POO('U20251084', 'Josué Alexander(POCHO)', 21, 10, 9);
-estudiante1.mostrarDATOS();
-//estudiante1.mostrarNOTAS();
-const alumno1 = new Redes('Josué Alexander(POCHO)', 10, 10, 7, 8, 8, 10);
-alumno1.MostrarDatos();
+let estudiante1 = new Instituto("JEFFERSON REQUENO", 3);
+estudiante1.mostrarMensaje();
 //# sourceMappingURL=index.js.map
